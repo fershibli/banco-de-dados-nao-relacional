@@ -94,9 +94,6 @@ db.estados.find({}, //filtros
 use('estoque')
 db.estados.find({ sigla: { $eq: 'SP' } }, { nome: 1 })
 
-use('estoque')
-db.estados.find({ nome: /^rio/i }, { _id: 0, nome: 1 })
-
 // i = case insensitive
 // ^ = começa com
 // $ = termina com
@@ -109,10 +106,10 @@ db.estados.find({ nome: /^rio/i }, { _id: 0, nome: 1 })
 // {n,m} = no mínimo n vezes e no máximo m vezes
 
 use('estoque')
-db.estados.find({ nome: /o$/i }, { _id: 0, nome: 1 })
+db.estados.find({ nome: /^rio/i }, { _id: 0, nome: 1 })
 
 use('estoque')
-db.estados.find({ populacao: { $gt: 11000000 } })
+db.estados.find({ nome: /o$/i }, { _id: 0, nome: 1 })
 
 // $eq (=)
 // $gt (>)
@@ -129,4 +126,26 @@ db.estados.find({ populacao: { $gt: 11000000 } })
 // $exists (exists)
 
 use('estoque')
+db.estados.find({ populacao: { $gt: 11000000 } })
+
+// select * from estados where sigla in ('AC', 'RJ')
+use('estoque')
 db.estados.find({ sigla: { $in: ['AC', 'RJ'] } })
+
+// select sigla, nome from estados where sigla=RJ or sigla=AC
+use('estoque')
+db.estados.find({
+    $or: [
+        { sigla: { $eq: 'AC' } },
+        { sigla: { $eq: 'RJ' } }
+    ]
+}, { _id: 0, sigla: 1, nome: 1 })
+
+// delete
+use('estoque')
+db.estados.deleteOne({ sigla: 'AC' })
+db.estados.deleteOne({ sigla: { $eq: 'AC' } })
+
+// delete many
+use('estoque')
+db.estados.deleteMany({ nome: /o/i })
