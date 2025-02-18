@@ -149,3 +149,11 @@ db.estados.deleteOne({ sigla: { $eq: 'AC' } })
 // delete many
 use('estoque')
 db.estados.deleteMany({ nome: /o/i })
+
+// update
+use('estoque')
+db.estados.updateOne(
+    { sigla: 'AC' },
+    { $set: { populacao: 1000 } }
+)
+db.estados.find({}, {})
