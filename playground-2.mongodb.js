@@ -70,12 +70,13 @@ try {
 } catch (err) {
     printjson(err)
 }
+
 //Volta do intervalo
 use('estoque')
 db.estados.insertMany([
     {
         sigla: 'SP', nome: 'São Paulo',
-        população: 12000000
+        populacao: 12000000
     },
     {
         sigla: 'AC', nome: 'Acre',
@@ -109,3 +110,6 @@ db.estados.find({ nome: /^rio/i }, { _id: 0, nome: 1 })
 
 use('estoque')
 db.estados.find({ nome: /o$/i }, { _id: 0, nome: 1 })
+
+use('estoque')
+db.estados.find({ populacao: { $gt: 11000000 } })
