@@ -92,3 +92,20 @@ db.estados.find({}, //filtros
 )
 use('estoque')
 db.estados.find({ sigla: { $eq: 'SP' } }, { nome: 1 })
+
+use('estoque')
+db.estados.find({ nome: /^rio/i }, { _id: 0, nome: 1 })
+
+// i = case insensitive
+// ^ = começa com
+// $ = termina com
+// . = qualquer caractere
+// * = zero ou mais
+// + = um ou mais
+// ? = zero ou um
+// {n} = exatamente n vezes
+// {n,} = no mínimo n vezes
+// {n,m} = no mínimo n vezes e no máximo m vezes
+
+use('estoque')
+db.estados.find({ nome: /o$/i }, { _id: 0, nome: 1 })
