@@ -21,3 +21,5 @@ async function importaMunicipios() {
         console.log('🔒 Conexão fechada');
     }
 }
+
+importaMunicipios();
