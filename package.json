@@ -5,16 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fershibli/banco-de-dados-nao-relacional.git"
-  },
   "author": "FerShibli",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/fershibli/banco-de-dados-nao-relacional/issues"
-  },
-  "homepage": "https://github.com/fershibli/banco-de-dados-nao-relacional#readme",
   "description": "",
   "dependencies": {
     "mongodb": "^6.14.2"
