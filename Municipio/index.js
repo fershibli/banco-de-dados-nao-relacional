@@ -13,7 +13,7 @@ async function importaMunicipios() {
         const db = client.db(dbName);
         const municipios = JSON.parse(fs.readFileSync('municipios.json', 'utf8'));
         const result = await db.collection(collectionName).insertMany(municipios);
-        console.log(`${result.insertedCount} municípios importados`);
+        console.log(`✅ ${result.insertedCount} municípios importados`);
     } catch (err) {
         console.error(`❌ Erro ao importar municípios: ${err}`);
     } finally {
