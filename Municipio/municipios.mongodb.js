@@ -22,6 +22,11 @@ db.municipios.aggregate([
 use('estoque')
 db.estados.aggregate([
     {
+        $match: {
+            nome: /São Paulo/i
+        }
+    },
+    {
         $lookup: {
             from: 'municipios',
             localField: 'codigo_uf',
