@@ -18,3 +18,15 @@ db.municipios.aggregate([
         }
     }
 ])
+
+use('estoque')
+db.estados.aggregate([
+    {
+        $lookup: {
+            from: 'municipios',
+            localField: 'codigo_uf',
+            foreignField: 'codigo_uf',
+            as: 'municipios'
+        }
+    }
+])
