@@ -11,8 +11,14 @@ async function importaMunicipios() {
         await client.connect();
         console.log('✅ Conectado ao MongoDB');
         const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+        const findCollection = await db.listCollections({ name: collectionName }).toArray();
+        if (findCollection.length > 0) {
+            await collection.drop();
+            console.log(`🗑️ Coleção anterior ${collectionName} apagada`);
+        }
         const municipios = JSON.parse(fs.readFileSync('municipios.json', 'utf8'));
-        const result = await db.collection(collectionName).insertMany(municipios);
+        const result = await collection.insertMany(municipios);
         console.log(`✅ ${result.insertedCount} municípios importados`);
     } catch (err) {
         console.error(`❌ Erro ao importar municípios: ${err}`);
