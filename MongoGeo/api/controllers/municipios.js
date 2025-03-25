@@ -4,7 +4,7 @@ export const getMunicipiosById = async (req, res) => {
     try {
         const { id } = req.params;
         const db = req.app.locals.db;
-        const municipio = await db.collection('municipios').findOne({ _id: id });
+        const municipio = await db.collection('municipios').findOne({ _id: ObjectId.createFromHexString(id) });
         if (!municipio) {
             return res.status(404).json({ error: true, message: 'Municipio not found' });
         }
