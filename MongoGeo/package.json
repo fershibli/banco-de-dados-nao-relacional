@@ -2,9 +2,16 @@
   "name": "mongogeo",
   "version": "1.0.0",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
+  "keywords": [
+    "mongodb",
+    "geo"
+  ],
   "author": "FerShibli",
   "license": "ISC",
   "description": "",
