@@ -1,10 +1,11 @@
 import express from 'express';
 import { createMunicipio, getMunicipiosById } from '../controllers/municipios.js';
+import { validateMunicipio } from '../middlewares/validators.js';
 
 const router = express.Router();
 
 router.get('/:id', getMunicipiosById);
 
-router.post("/", createMunicipio)
+router.post("/", validateMunicipio, createMunicipio)
 
 export default router;
