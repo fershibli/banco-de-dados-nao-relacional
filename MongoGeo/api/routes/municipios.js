@@ -1,6 +1,6 @@
 import express from 'express';
 import { createMunicipio, getMunicipiosById } from '../controllers/municipios.js';
-import { validateMunicipio } from '../middlewares/validators.js';
+import { validateMunicipio } from '../middlewares/validations.js';
 
 const router = express.Router();
 

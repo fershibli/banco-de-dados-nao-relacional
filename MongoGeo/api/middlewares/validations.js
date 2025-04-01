@@ -26,7 +26,7 @@ export const validateMunicipio = [
         .isObject().withMessage('Local must be an object'),
     check('local.type')
         .notEmpty().withMessage('Local type is required')
-        .equals('Point').withMessage('Local type must be "Point"'),
+        .equals('Point').withMessage('Local type must be \"Point\"'),
     check('local.coordinates')
         .notEmpty().withMessage('Local coordinates are required')
         .isArray({ min: 2, max: 2 }).withMessage('Local coordinates must be an array of 2 numbers'),
