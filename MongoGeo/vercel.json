@@ -2,12 +2,12 @@
     "version": 2,
     "rewrites": [
         {
-            "source": "/(.*)",
-            "destination": "/"
+            "source": "/api/(.*)",
+            "destination": "/api"
         }
     ],
     "functions": {
-        "server.js": {
+        "api/server.js": {
             "includeFiles": "api/swagger/swagger_output.json"
         }
     }

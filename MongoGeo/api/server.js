@@ -1,7 +1,7 @@
 
 import express from 'express';
-import { connectToDatabase } from './config/db.js';
-import municipiosRoutes from './api/routes/municipios.js';
+import { connectToDatabase } from '../config/db.js';
+import municipiosRoutes from './routes/municipios.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
