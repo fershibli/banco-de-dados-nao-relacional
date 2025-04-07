@@ -1,0 +1,14 @@
+{
+    "version": 2,
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "/api"
+        }
+    ],
+    "functions": {
+        "api/index.js": {
+            "includeFiles": "api/swagger/swagger_output.json"
+        }
+    }
+}
