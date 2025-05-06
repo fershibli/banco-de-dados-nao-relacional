@@ -45,15 +45,16 @@ export const validateUsuario = [
         .not().isEmpty().trim().withMessage('É obrigatório informar o e-mail')
         .isEmail().withMessage('Informe um e-mail válido')
         .isLowercase().withMessage('Não são permitidas letras maiúsculas')
-        .custom((value, { req }) => {
-            return db.collection('usuarios')
-                .find({ email: { $eq: value } }).toArray()
-                .then((email) => {
-                    if (email.length && !req.params.id) {
-                        return Promise.reject(`O e-mail ${value} já existe`)
-                    }
-                })
-        }),
+    // .custom((value, { req }) => {
+    //     return db.collection('usuarios')
+    //         .find({ email: { $eq: value } }).toArray()
+    //         .then((email) => {
+    //             if (email.length && !req.params.id) {
+    //                 return Promise.reject(`O e-mail ${value} já existe`)
+    //             }
+    //         })
+    // }),
+    ,
     check('senha')
         .not().isEmpty().trim().withMessage('A senha é obrigatória')
         .isLength({ min: 6 }).withMessage('A senha deve ter no mínimo 6 caracteres')
