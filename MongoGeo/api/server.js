@@ -3,9 +3,11 @@ import express from 'express';
 import { connectToDatabase } from '../config/db.js';
 import municipiosRoutes from './routes/municipios.js';
 import usuariosRoutes from './routes/usuarios.js';
+import cors from 'cors';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.use(cors());
 app.use(express.json());
 
 // public routes
