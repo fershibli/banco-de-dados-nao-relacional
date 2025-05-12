@@ -31,8 +31,7 @@ export const efetuaLogin = async (req, res) => {
             return res.status(403).json({ message: 'Dados de login inválidos' })
         }
 
-        const token = jwt.sign({ id: usuario._id }, process.env.JWT_SECRET, { expiresIn: '1h' })
-        res.status(200).json({ token })
+        res.status(200).json({ message: 'Login realizado com sucesso' })
     } catch (error) {
         res.status(500).json({ message: 'Erro ao efetuar login', error })
     }
