@@ -15,20 +15,25 @@ export const insereUsuario = async (req, res) => {
 
 export const efetuaLogin = async (req, res) => {
     const { email, senha } = req.body
-    const db = req.app.locals.db
-    const usuario = await db.collection('usuarios')
-        .findOne({ email })
-        .catch(err => res.status(400).json(err))
+    try {
+        const db = req.app.locals.db
+        let usuario = await db.collection('usuarios')
+            .find({ email })
+            .limit(1)
+            .toArray()
 
-    if (!usuario) {
-        return res.status(401).json({ message: 'Dados de login inválidos' })
+        if (!usuario?.length) {
+            return res.status(401).json({ message: 'Dados de login inválidos' })
+        }
+
+        const senhaValida = await bcrypt.compare(senha, usuario.senha)
+        if (!senhaValida) {
+            return res.status(401).json({ message: 'Dados de login inválidos' })
+        }
+
+        const token = jwt.sign({ id: usuario._id }, process.env.JWT_SECRET, { expiresIn: '1h' })
+        res.status(200).json({ token })
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao efetuar login', error })
     }
-
-    const senhaValida = await bcrypt.compare(senha, usuario.senha)
-    if (!senhaValida) {
-        return res.status(401).json({ message: 'Dados de login inválidos' })
-    }
-
-    const token = jwt.sign({ id: usuario._id }, process.env.JWT_SECRET, { expiresIn: '1h' })
-    res.status(200).json({ token })
 }
