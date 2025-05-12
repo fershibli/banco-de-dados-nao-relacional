@@ -22,7 +22,7 @@ export const efetuaLogin = async (req, res) => {
             .limit(1)
             .toArray()
 
-        if (!usuario?.length || usuario[0].ativo === false) {
+        if (!usuario?.length || usuario?.[0]?.ativo === false) {
             return res.status(403).json({ message: 'Dados de login inválidos' })
         }
 
