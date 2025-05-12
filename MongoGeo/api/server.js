@@ -1,9 +1,13 @@
 
 import express from 'express';
+import dotenv from 'dotenv';
 import { connectToDatabase } from '../config/db.js';
 import municipiosRoutes from './routes/municipios.js';
 import usuariosRoutes from './routes/usuarios.js';
 import cors from 'cors';
+
+// Load environment variables from .env file
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
