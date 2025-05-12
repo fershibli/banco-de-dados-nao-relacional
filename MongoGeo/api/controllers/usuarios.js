@@ -22,13 +22,13 @@ export const efetuaLogin = async (req, res) => {
             .limit(1)
             .toArray()
 
-        if (!usuario?.length) {
-            return res.status(401).json({ message: 'Dados de login inválidos' })
+        if (!usuario?.length || usuario[0].ativo === false) {
+            return res.status(403).json({ message: 'Dados de login inválidos' })
         }
 
-        const senhaValida = await bcrypt.compare(senha, usuario.senha)
-        if (!senhaValida) {
-            return res.status(401).json({ message: 'Dados de login inválidos' })
+        const isMatch = await bcrypt.compare(senha, usuario[0].senha)
+        if (!isMatch) {
+            return res.status(403).json({ message: 'Dados de login inválidos' })
         }
 
         const token = jwt.sign({ id: usuario._id }, process.env.JWT_SECRET, { expiresIn: '1h' })
