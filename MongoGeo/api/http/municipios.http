@@ -2,15 +2,19 @@
 @baseURL = http://localhost:3000/api/municipios
 @id = 67cf88945d4f674a9a8c3390
 
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNjgyMjc5NzVmZWRkOTgwNDYwOGFlMjZmIn0sImlhdCI6MTc0NzA5ODI4NSwiZXhwIjoxNzQ3MTg0Njg1fQ.1AtATme_oPNkWANhrmyXtNb22qS2AwdZIG7jZHivNL4
+
 ###
 // GET - By id
 GET {{baseURL}}/{{id}}
 Content-Type: application/json
+access-token: {{token}}
 
 ###
 // GET - Id inválido
 GET {{baseURL}}/123
 Content-Type: application/json
+access-token: {{token}}
 
 ###
 // POST - Inserer um novo municipio
