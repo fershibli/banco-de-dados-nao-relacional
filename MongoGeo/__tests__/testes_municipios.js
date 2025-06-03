@@ -36,4 +36,15 @@ describe('API REST de Municipios com o Token', () => {
         token = response.body.token;
         expect(token).toBeDefined();
     })
+
+    it('Obter os municios com o token', async () => {
+        const response = await request(baseURL)
+            .get('/municipios')
+            .set('Content-Type', 'application/json')
+            .set('Authorization', `Bearer ${token}`)
+            .expect(200);
+        
+        const municipios = response.body;
+        expect(municipios).toBeInstanceOf(Object);
+    })
 })
